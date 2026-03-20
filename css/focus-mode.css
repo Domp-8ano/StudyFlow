@@ -1,0 +1,264 @@
+.focus-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.focus-header {
+    margin-bottom: 3rem;
+}
+
+.focus-header p {
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.timer-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.timer-display {
+    font-size: 6rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    font-family: 'Inter', monospace;
+    letter-spacing: -2px;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.timer-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-btn:hover {
+    transform: scale(1.1);
+    background: var(--primary-dark);
+}
+
+.timer-btn:active {
+    transform: scale(0.95);
+}
+
+.timer-modes {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    padding: 0.625rem 1.25rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.mode-btn.active,
+.mode-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.focus-task {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.focus-task h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.focus-task select {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.focus-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.focus-stat {
+    text-align: center;
+}
+
+.focus-stat i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.focus-stat span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.focus-stat p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Focus Mode Active State */
+body.focus-active {
+    overflow: hidden;
+}
+
+body.focus-active .sidebar,
+body.focus-active .top-bar {
+    display: none;
+}
+
+body.focus-active .main-content {
+    margin-left: 0;
+}
+
+body.focus-active .page-section {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+body.focus-active .focus-container {
+    max-width: 100%;
+}
+
+body.focus-active .timer-display {
+    font-size: 10rem;
+}
+
+.focus-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    z-index: 999;
+    display: none;
+}
+
+body.focus-active .focus-overlay {
+    display: block;
+}
+
+.exit-focus {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    cursor: pointer;
+    z-index: 1000;
+    display: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.exit-focus:hover {
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
+}
+
+body.focus-active .exit-focus {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Pulse animation for active timer */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.timer-display.active {
+    animation: pulse 2s infinite;
+    color: var(--primary);
+}
+
+/* Progress ring for timer */
+.timer-progress-ring {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 2rem;
+}
+
+.timer-progress-ring svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+.timer-progress-bg {
+    fill: none;
+    stroke: var(--bg-tertiary);
+    stroke-width: 8;
+}
+
+.timer-progress-fill {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 880;
+    stroke-dashoffset: 880;
+    transition: stroke-dashoffset 1s linear;
+}
+
+@media (max-width: 768px) {
+    .timer-display {
+        font-size: 4rem;
+    }
+    
+    body.focus-active .timer-display {
+        font-size: 5rem;
+    }
+    
+    .focus-stats {
+        gap: 2rem;
+    }
+}

@@ -1,0 +1,156 @@
+{
+  "achievements": [
+    {
+      "id": "first_homework",
+      "name": "Primeiros Passos",
+      "description": "Crie sua primeira lição",
+      "icon": "fa-shoe-prints",
+      "xpReward": 50,
+      "category": "beginner"
+    },
+    {
+      "id": "complete_5",
+      "name": "Produtivo",
+      "description": "Complete 5 lições",
+      "icon": "fa-check-double",
+      "xpReward": 100,
+      "category": "progress"
+    },
+    {
+      "id": "complete_10",
+      "name": "Estudante Dedicado",
+      "description": "Complete 10 lições",
+      "icon": "fa-graduation-cap",
+      "xpReward": 200,
+      "category": "progress"
+    },
+    {
+      "id": "complete_25",
+      "name": "Mestre das Tarefas",
+      "description": "Complete 25 lições",
+      "icon": "fa-crown",
+      "xpReward": 500,
+      "category": "progress"
+    },
+    {
+      "id": "streak_3",
+      "name": "Consistência",
+      "description": "Estude 3 dias seguidos",
+      "icon": "fa-fire",
+      "xpReward": 100,
+      "category": "streak"
+    },
+    {
+      "id": "streak_7",
+      "name": "Semana Perfeita",
+      "description": "Estude 7 dias seguidos",
+      "icon": "fa-calendar-check",
+      "xpReward": 300,
+      "category": "streak"
+    },
+    {
+      "id": "streak_30",
+      "name": "Mês de Ouro",
+      "description": "Estude 30 dias seguidos",
+      "icon": "fa-medal",
+      "xpReward": 1000,
+      "category": "streak"
+    },
+    {
+      "id": "focus_30",
+      "name": "Foco Total",
+      "description": "Acumule 30 minutos em modo foco",
+      "icon": "fa-clock",
+      "xpReward": 100,
+      "category": "focus"
+    },
+    {
+      "id": "focus_120",
+      "name": "Maratonista",
+      "description": "Acumule 2 horas em modo foco",
+      "icon": "fa-stopwatch",
+      "xpReward": 300,
+      "category": "focus"
+    },
+    {
+      "id": "focus_500",
+      "name": "Mestre da Concentração",
+      "description": "Acumule 8 horas em modo foco",
+      "icon": "fa-brain",
+      "xpReward": 1000,
+      "category": "focus"
+    },
+    {
+      "id": "all_subjects",
+      "name": "Polivalente",
+      "description": "Crie lições em 5 matérias diferentes",
+      "icon": "fa-layer-group",
+      "xpReward": 150,
+      "category": "variety"
+    },
+    {
+      "id": "all_subjects_master",
+      "name": "Renaissance",
+      "description": "Crie lições em 10 matérias diferentes",
+      "icon": "fa-university",
+      "xpReward": 500,
+      "category": "variety"
+    },
+    {
+      "id": "night_owl",
+      "name": "Coruja Noturna",
+      "description": "Complete uma lição após as 22h",
+      "icon": "fa-moon",
+      "xpReward": 75,
+      "category": "special"
+    },
+    {
+      "id": "early_bird",
+      "name": "Madrugador",
+      "description": "Complete uma lição antes das 8h",
+      "icon": "fa-sun",
+      "xpReward": 75,
+      "category": "special"
+    },
+    {
+      "id": "perfect_day",
+      "name": "Dia Perfeito",
+      "description": "Complete todas as lições do dia",
+      "icon": "fa-star",
+      "xpReward": 100,
+      "category": "daily"
+    },
+    {
+      "id": "speed_demon",
+      "name": "Velocista",
+      "description": "Complete uma lição em menos de 5 minutos",
+      "icon": "fa-bolt",
+      "xpReward": 50,
+      "category": "special"
+    },
+    {
+      "id": "planner",
+      "name": "Planejador",
+      "description": "Crie 5 lições de uma vez",
+      "icon": "fa-calendar-alt",
+      "xpReward": 100,
+      "category": "planning"
+    },
+    {
+      "id": "high_achiever",
+      "name": "High Achiever",
+      "description": "Alcance o nível 5",
+      "icon": "fa-trophy",
+      "xpReward": 500,
+      "category": "level"
+    },
+    {
+      "id": "legend",
+      "name": "Lenda Viva",
+      "description": "Alcance o nível 10",
+      "icon": "fa-crown",
+      "xpReward": 2000,
+      "category": "level"
+    }
+  ]
+}

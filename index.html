@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyFlow - Gerenciador de Lições</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/focus-mode.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>StudyFlow</span>
+            </div>
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <ul class="nav-links">
+            <li class="active" data-page="dashboard">
+                <a href="#dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li data-page="homeworks">
+                <a href="#homeworks">
+                    <i class="fas fa-book"></i>
+                    <span>Lições</span>
+                    <span class="badge" id="pendingCount">0</span>
+                </a>
+            </li>
+            <li data-page="focus">
+                <a href="#focus">
+                    <i class="fas fa-clock"></i>
+                    <span>Modo Foco</span>
+                </a>
+            </li>
+            <li data-page="achievements">
+                <a href="#achievements">
+                    <i class="fas fa-trophy"></i>
+                    <span>Conquistas</span>
+                </a>
+            </li>
+            <li data-page="profile">
+                <a href="#profile">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                <span>Modo Escuro</span>
+            </button>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">
+                    <span id="userInitials">U</span>
+                </div>
+                <div class="user-details">
+                    <h3 id="userName">Usuário</h3>
+                    <div class="level-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Nível <span id="userLevel">1</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="xp-display">
+                <div class="xp-bar">
+                    <div class="xp-progress" id="xpProgress"></div>
+                </div>
+                <span class="xp-text"><span id="currentXP">0</span> / <span id="nextLevelXP">100</span> XP</span>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="page-section active">
+            <h1 class="page-title">Dashboard</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalHomeworks">0</h3>
+                        <p>Total de Lições</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="completedHomeworks">0</h3>
+                        <p>Concluídas</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pendingHomeworks">0</h3>
+                        <p>Pendentes</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="currentStreak">0</h3>
+                        <p>Dias Seguidos</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card recent-homeworks">
+                    <div class="card-header">
+                        <h2>Lições Recentes</h2>
+                        <a href="#homeworks" class="btn-link">Ver todas</a>
+                    </div>
+                    <div class="homework-list" id="recentHomeworksList">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+
+                <div class="card achievements-preview">
+                    <div class="card-header">
+                        <h2>Conquistas Recentes</h2>
+                        <a href="#achievements" class="btn-link">Ver todas</a>
+                    </div>
+                    <div class="achievements-grid" id="recentAchievements">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- CALENDÁRIO -->
+            <div class="card calendar-card" style="margin-top: 1.5rem;">
+                <div class="card-header">
+                    <h2>Calendário</h2>
+                    <div class="calendar-nav">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <span id="currentMonth">Março 2026</span>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="calendar" id="calendar"></div>
+            </div>
+        </section>
+
+        <!-- Homeworks Section -->
+        <section id="homeworks" class="page-section">
+            <div class="section-header">
+                <h1 class="page-title">Minhas Lições</h1>
+                <button class="btn-primary" id="addHomeworkBtn">
+                    <i class="fas fa-plus"></i>
+                    Nova Lição
+                </button>
+            </div>
+
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="pending">Pendentes</button>
+                    <button class="filter-btn" data-filter="completed">Concluídas</button>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchHomework" placeholder="Buscar lições...">
+                </div>
+            </div>
+
+            <div class="homeworks-grid" id="homeworksGrid">
+                <!-- Preenchido via JS -->
+            </div>
+        </section>
+
+        <!-- Focus Mode Section -->
+        <section id="focus" class="page-section">
+            <div class="focus-container">
+                <div class="focus-header">
+                    <h1 class="page-title">Modo Foco</h1>
+                    <p>Concentre-se nas suas tarefas sem distrações</p>
+                </div>
+
+                <div class="timer-container">
+                    <div class="timer-display" id="timerDisplay">25:00</div>
+                    <div class="timer-controls">
+                        <button class="timer-btn" id="startTimer">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="timer-btn" id="pauseTimer">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="timer-btn" id="resetTimer">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+                    <div class="timer-modes">
+                        <button class="mode-btn active" data-time="25">Pomodoro</button>
+                        <button class="mode-btn" data-time="50">Foco Longo</button>
+                        <button class="mode-btn" data-time="5">Pausa Curta</button>
+                    </div>
+                </div>
+
+                <div class="focus-task">
+                    <h3>Tarefa em Foco</h3>
+                    <select id="focusTaskSelect">
+                        <option value="">Selecione uma lição...</option>
+                    </select>
+                </div>
+
+                <div class="focus-stats" id="focusStats">
+                    <div class="focus-stat">
+                        <i class="fas fa-clock"></i>
+                        <span id="totalFocusTime">0h 0min</span>
+                        <p>Tempo Total</p>
+                    </div>
+                    <div class="focus-stat">
+                        <i class="fas fa-check"></i>
+                        <span id="completedSessions">0</span>
+                        <p>Sessões</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="page-section">
+            <h1 class="page-title">Conquistas</h1>
+            
+            <div class="achievements-summary">
+                <div class="progress-ring">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                        <circle class="progress-fill" id="achievementsProgress" cx="50" cy="50" r="45"/>
+                    </svg>
+                    <div class="progress-text">
+                        <span id="unlockedCount">0</span>/<span id="totalAchievements">0</span>
+                    </div>
+                </div>
+                <div class="summary-text">
+                    <h2>Continue assim!</h2>
+                    <p>Desbloqueie conquistas completando tarefas e mantendo consistência nos estudos.</p>
+                </div>
+            </div>
+
+            <div class="achievements-list" id="achievementsList">
+                <!-- Preenchido via JS -->
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="page-section">
+            <h1 class="page-title">Meu Perfil</h1>
+            
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profileAvatar">
+                        <span id="profileInitials">U</span>
+                        <button class="change-avatar" id="changeAvatar">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profileName">Usuário</h2>
+                        <p id="profileEmail">usuario@email.com</p>
+                        <div class="profile-badges">
+                            <span class="badge-level">Nível <span id="profileLevel">1</span></span>
+                            <span class="badge-streak"><i class="fas fa-fire"></i> <span id="profileStreak">0</span> dias</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="profile-stat">
+                        <i class="fas fa-book"></i>
+                        <h4 id="profileTotalHomeworks">0</h4>
+                        <p>Lições Criadas</p>
+                    </div>
+                    <div class="profile-stat">
+                        <i class="fas fa-check-double"></i>
+                        <h4 id="profileCompletedRate">0%</h4>
+                        <p>Taxa de Conclusão</p>
+                    </div>
+                    <div class="profile-stat">
+                        <i class="fas fa-hourglass-half"></i>
+                        <h4 id="profileFocusTime">0h</h4>
+                        <p>Tempo de Foco</p>
+                    </div>
+                    <div class="profile-stat">
+                        <i class="fas fa-trophy"></i>
+                        <h4 id="profileAchievements">0</h4>
+                        <p>Conquistas</p>
+                    </div>
+                </div>
+
+                <div class="profile-settings">
+                    <h3>Configurações</h3>
+                    <div class="setting-item">
+                        <label>Notificações</label>
+                        <label class="switch">
+                            <input type="checkbox" id="notificationsToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>Sons</label>
+                        <label class="switch">
+                            <input type="checkbox" id="soundToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Add Homework -->
+    <div class="modal" id="homeworkModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nova Lição</h2>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="homeworkForm">
+                <div class="form-group">
+                    <label for="subject">Matéria</label>
+                    <select id="subject" required>
+                        <option value="">Selecione a matéria</option>
+                        <option value="Matemática">Matemática</option>
+                        <option value="Português">Português</option>
+                        <option value="História">História</option>
+                        <option value="Geografia">Geografia</option>
+                        <option value="Ciências">Ciências</option>
+                        <option value="Física">Física</option>
+                        <option value="Química">Química</option>
+                        <option value="Biologia">Biologia</option>
+                        <option value="Inglês">Inglês</option>
+                        <option value="Artes">Artes</option>
+                        <option value="Educação Física">Educação Física</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="title">Título</label>
+                    <input type="text" id="title" placeholder="Ex: Lista de exercícios" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrição</label>
+                    <textarea id="description" rows="3" placeholder="Detalhes da lição..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dueDate">Data de Entrega</label>
+                        <input type="date" id="dueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Prioridade</label>
+                        <select id="priority">
+                            <option value="low">Baixa</option>
+                            <option value="medium" selected>Média</option>
+                            <option value="high">Alta</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="estimatedTime">Tempo Estimado (minutos)</label>
+                    <input type="number" id="estimatedTime" min="5" step="5" value="30">
+                </div>
+                <button type="submit" class="btn-primary btn-full">
+                    <i class="fas fa-save"></i>
+                    Salvar Lição
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- XP Notification -->
+    <div class="xp-notification" id="xpNotification">
+        <div class="xp-icon">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="xp-info">
+            <h4>+<span id="xpGained">0</span> XP</h4>
+            <p id="xpMessage">Lição concluída!</p>
+        </div>
+    </div>
+
+    <!-- Achievement Notification -->
+    <div class="achievement-notification" id="achievementNotification">
+        <div class="achievement-icon">
+            <i class="fas fa-trophy"></i>
+        </div>
+        <div class="achievement-info">
+            <h4>Conquista Desbloqueada!</h4>
+            <p id="achievementName">Nome da Conquista</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/homework.js"></script>
+    <script src="js/task-timer.js"></script>
+    <script src="js/xp-system.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/focus-mode.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/statistics.js"></script>
+    <script src="js/shortcuts.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
